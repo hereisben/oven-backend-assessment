@@ -1,10 +1,10 @@
 import { randomUUID } from "crypto";
 import { Request, Response } from "express";
 import { webhookStorage } from "../storage/webhook.storage";
-import { Webhook, WebhookInput } from "../types/webhook";
+import { Webhook } from "../types/webhook";
 
 export const receiveWebhook = (req: Request, res: Response) => {
-  const input = req.body as WebhookInput;
+  const input = req.body as { source: string; event: string; payload: unknown };
 
   const webhook: Webhook = {
     id: randomUUID(),
