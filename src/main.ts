@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
+import { errorHandler } from "./middleware/errorHandler";
 import webhookRoutes from "./routes/webhook.routes";
 
 dotenv.config();
@@ -12,6 +13,8 @@ app.use(webhookRoutes);
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 

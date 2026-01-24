@@ -28,6 +28,19 @@ I added basic input validation for webhook requests using a schema. The server n
 
 ---
 
+### 3. Missing Centralized Error Handling
+
+- **Category:** Reliability
+- **Severity:** Medium
+
+**Problem:**  
+Errors were handled directly inside routes and controllers. If an unexpected error happens, the response may be inconsistent or the server could crash.
+
+**Fix:**  
+I added a centralized error handling middleware to catch unexpected errors and return a consistent error response.
+
+---
+
 ## Prioritization Rationale
 
-I fixed the ID issue first because IDs are used to identify and track data. If IDs are duplicated or easy to guess, it can cause data conflicts and make debugging harder later. After that, I added input validation to prevent bad or unexpected data from entering the system.
+I fixed the ID issue first because IDs are used to identify and track data. If IDs are duplicated or easy to guess, it can cause data conflicts and make debugging harder later. After that, I added input validation to prevent bad or unexpected data from entering the system. A simple centralized error handling to make the API more stable and easier to maintain also added.
